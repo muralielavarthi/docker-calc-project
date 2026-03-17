@@ -18,6 +18,8 @@ WORKDIR /app/backend
 # Copy app files
 COPY ./code/* /app/backend/
 
+RUN npm install
+
 # Set ownership (important when using non-root user)
 RUN chown -R backend:backend /app/backend
 
