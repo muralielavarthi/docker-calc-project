@@ -1,30 +1,17 @@
-FROM alpine:latest
-
-# Install Node.js
-RUN apk add --no-cache nodejs npm
-
-EXPOSE 8080
-
-LABEL Project="Expense" \
-      Author="Murali"
-
-# Create user safely (non-interactive)
-RUN adduser -D backend
-
-ENV DB_HOST="mysql"
-
-WORKDIR /app/backend
-
-# Copy app files
-COPY ./code/ /app/backend/
-
+FROM node:20.18.3-alpine3.21 AS builder
+WORKDIR /opt/backend
+COPY package.json ./
+COPY *.js ./
 RUN npm install
 
-# Set ownership (important when using non-root user)
-RUN chown -R backend:backend /app/backend
 
-USER backend
-
-ENTRYPOINT ["node"]
+FROM node:20.18.3-alpine3.21
+RUN addgroup -S expense && adduser -S expense -G expense && \
+    mkdir /opt/backend && \
+    chown -R expense:expense /opt/backend
+ENV DB_HOST="mysql"
+WORKDIR /opt/backend
+USER expense
+COPY --from=builder /opt/backend /opt/backend
+ENTRYPOINT [ "node" ]
 CMD ["index.js"]
-
