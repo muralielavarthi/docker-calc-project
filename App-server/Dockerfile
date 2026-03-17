@@ -16,7 +16,7 @@ ENV DB_HOST="mysql"
 WORKDIR /app/backend
 
 # Copy app files
-COPY ./code/* /app/backend/
+COPY ./code/ /app/backend/
 
 RUN npm install
 
