@@ -6,7 +6,7 @@ LABEL Project="Expense" \
       Author="Murali"
 
 RUN rm -rf /usr/share/nginx/html/*
-COPY ./code/index.html /usr/share/nginx/html/index.html
+COPY ./code/* /usr/share/nginx/html/
 
 # Give ownership of the necessary directories to the nginx user
 RUN chown -R nginx:nginx /var/cache/nginx \
