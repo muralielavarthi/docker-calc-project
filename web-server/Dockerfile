@@ -1,6 +1,6 @@
-ARG version: 1.29.6
+ARG version:latest
 
-FROM node:${version}
+FROM nginx:${version}
 
 EXPOSE 80
 
