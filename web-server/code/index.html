@@ -1,7 +1,28 @@
 <!DOCTYPE html>
+<html>
+  <head>
+    <title>Load Backend Response</title>
+  </head>
+  <body>
+    <h2>Click to Load Backend Data</h2>
 
-<html lang="en">
-    <body>
-        <h1>Welcome to the Front-End Code</h1>
-        <p>This is a sample HTML file for the front-end code.</p>
+    <button onclick="loadBackend()">Load index.js</button>
+
+    <!-- This is where response will be shown -->
+    <p id="output"></p>
+
+    <script>
+      function loadBackend() {
+        fetch("http://backend:8080/") // or host.docker.internal if needed
+          .then((response) => response.text())
+          .then((data) => {
+            // Display in webpage instead of console
+            document.getElementById("output").innerText = data;
+          })
+          .catch((error) => {
+            document.getElementById("output").innerText = "Error: " + error;
+          });
+      }
+    </script>
+  </body>
 </html>
