@@ -14,6 +14,8 @@ RUN chown -R nginx:nginx /var/cache/nginx \
     && chown -R nginx:nginx /run \
     && chown -R nginx:nginx /usr/share/nginx/html
 
+# non-root user to run nginx
+# nginx image already has a non-root user named 'nginx' with UID 101
 USER nginx
 
 CMD ["nginx", "-g", "daemon off;"]
