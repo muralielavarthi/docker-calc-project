@@ -10,7 +10,7 @@ services:
 
   backend:
     build: ./backend
-    command: sh -c "sleep 10 && npm start"
+    command: sh -c "sleep 10 && node /app/index.js"
     container_name: backend
     env_file: .env
     ports:
