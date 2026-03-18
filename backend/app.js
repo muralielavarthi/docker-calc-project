@@ -31,5 +31,15 @@ app.post("/add", (req, res) => {
   res.json({ result });
 });
 
+app.post("/sub", (req, res) => {
+  const { num1, num2 } = req.body;
+  const result = Number(num1) - Number(num2);
+
+  const query = "INSERT INTO results (num1, num2, result) VALUES (?, ?, ?)";
+  db.query(query, [num1, num2, result]);
+
+  res.json({ result });
+});
+
 const PORT = process.env.BACKEND_PORT || 8080;
 app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
