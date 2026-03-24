@@ -24,7 +24,7 @@ services:
     networks:
       - expense_network
     ports:
-      - "${BACKEND_PORT}:8080"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     depends_on:
       - mysql
 
