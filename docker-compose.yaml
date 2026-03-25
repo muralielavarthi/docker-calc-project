@@ -30,7 +30,7 @@ services:
 
   web:
     build: ./web
-    image: muralielavarthi/frontend:1.0.0
+    image: muralielavarthi/mysql:1.0.0
     container_name: web
     env_file: .env
     networks:
