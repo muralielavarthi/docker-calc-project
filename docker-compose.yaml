@@ -7,9 +7,8 @@ volumes:
   db_data:
 
 services:
-  mysql:
+  database:
     image: muralielavarthi/database:1.0.0
-    #Go to the ./db folder, find a Dockerfile, and build a custom image from it.
     env_file: .env
     volumes:
       - db_data:/var/lib/mysql
@@ -26,7 +25,7 @@ services:
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     depends_on:
-      - mysql
+      - database
 
   web:
     image: muralielavarthi/frontend:1.0.0
