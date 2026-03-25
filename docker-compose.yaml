@@ -36,6 +36,6 @@ services:
     networks:
       - expense_network
     ports:
-      - "${NGINX_PORT}:${CONTAINER_NGINX_PORT}" #host:container mapping
+      - "${NGINX_PORT}:80"
     depends_on:
       - backend
