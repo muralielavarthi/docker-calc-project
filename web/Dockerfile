@@ -1,12 +1,9 @@
 FROM nginx:alpine
 
-RUN apk add --no-cache gettext
-
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 RUN rm /etc/nginx/conf.d/default.conf
 
-COPY nginx.conf /etc/nginx/nginx.conf.template
 COPY index.html /usr/share/nginx/html/index.html
 
 RUN mkdir -p /tmp/nginx \
@@ -15,4 +12,4 @@ RUN mkdir -p /tmp/nginx \
 
 USER appuser
 
-CMD /bin/sh -c "envsubst '\$NGINX_PORT \$BACKEND_PORT' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
+CMD ["nginx", "-g", "daemon off;"]
