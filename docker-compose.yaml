@@ -9,7 +9,7 @@ volumes:
 services:
   mysql:
     build: ./db
-    image: muralielavarthi/mysql:1.0.0
+    image: muralielavarthi/mysql:2.0.0
     #Go to the ./db folder, find a Dockerfile, and build a custom image from it.
     env_file: .env
     volumes:
@@ -19,7 +19,7 @@ services:
 
   backend:
     build: ./backend
-    image: muralielavarthi/backend:1.0.0
+    image: muralielavarthi/backend:2.0.0
     command: sh -c "sleep 20 && node app.js"
     container_name: backend
     env_file: .env
@@ -30,7 +30,7 @@ services:
 
   web:
     build: ./web
-    image: muralielavarthi/frontend:1.0.0
+    image: muralielavarthi/frontend:2.0.0
     container_name: web
     env_file: .env
     networks:
